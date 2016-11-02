@@ -6,11 +6,12 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'faker'
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec', '~> 3.5'
+  gem 'rspec-rails', '3.5.2'
 end
 
 group :test do
