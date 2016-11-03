@@ -1,0 +1,22 @@
+@import "bootstrap";
+
+h1, h2 {
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 2.5em;
+  font-weight: bold;    
+  letter-spacing: -2px;
+  margin-top: 30px;
+  margin-bottom: 1px;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: normal;    
+  letter-spacing: -1px;
+  margin-top: 1px;
+}
