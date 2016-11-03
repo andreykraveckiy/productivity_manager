@@ -7,4 +7,9 @@ FactoryGirl.define do
     email Faker::Internet.email
     password "password8"
   end
+
+  factory :project do
+    name "My first project"
+    user
+  end
 end

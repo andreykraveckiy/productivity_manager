@@ -1,3 +1,7 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
-<%= link_to "Log out", destroy_user_session_path, method: :delete %>
+<%provide(:title, "Projects") %>
+<div class="row">
+  <h1>Simple todo lists</h1>
+  <h2>from <%= current_user.name %></h2>
+  <p>Find me in app/views/projects/index.html.erb</p>
+  <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+</div>
