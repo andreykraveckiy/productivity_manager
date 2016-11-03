@@ -3,7 +3,18 @@
   <h1>Simple todo lists</h1>
   <h2>from <%= current_user.name %></h2>
   <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-  <div class="projects" id="all_projects">
-    here you will be able to find all projects list
-  </div>
+  <div class="center" id="all_projects">
+    <% if current_user.projects.any? %>
+      <ol class="projects">
+        <% current_user.projects.each do |project| %>
+          <li class="project">
+            <div>
+              <header><%= project.name %> | <%= link_to "delete", project, method: :delete, data: { confirm: "You sure?" }, title: project.name %> </header>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    <% end %>
+    <%= render 'projects/project_form' %>
+  </div>  
 </div>

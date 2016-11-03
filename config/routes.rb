@@ -1,7 +1,7 @@
 ProductivityManager::Application.routes.draw do
   root 'projects#index'
 
-  resources :projects, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :projects, only: [:index,:create, :edit, :update, :destroy]
   devise_for :users,
     controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   # The priority is based upon order of creation: first created -> highest priority.

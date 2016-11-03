@@ -20,3 +20,14 @@ h2 {
   letter-spacing: -1px;
   margin-top: 1px;
 }
+
+.projects {
+  list-style: none;
+  width: 75%;
+  text-align: center;
+  margin: 10px 0 0 0;
+  li {
+    padding: 10px 0;
+    border: 1px solid #e8e8e8;
+  }
+}

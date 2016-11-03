@@ -1,0 +1,5 @@
+<li class="project">
+  <div>
+    <header><%= project.name %> | <%= link_to "edit", controller: "projects", action:  "edit", id: project %> | <%= link_to "delete", project, method: :delete, data: { confirm: "You sure?" }, title: project.name %></header>
+  </div>
+</li>
