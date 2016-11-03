@@ -6,6 +6,7 @@ FactoryGirl.define do
     uid ('0'..'1').to_a.shuffle[0..15].join
     email Faker::Internet.email
     password "password8"
+    password_confirmation "password8"
   end
 
   factory :project do
