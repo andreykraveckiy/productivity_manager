@@ -13,4 +13,10 @@ FactoryGirl.define do
     sequence (:name) { |n| "Project #{n}" }
     user
   end
+
+  factory :task do
+    content "Some task"
+    priority 0
+    project
+  end
 end

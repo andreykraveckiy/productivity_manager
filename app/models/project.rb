@@ -3,4 +3,6 @@ class Project < ApplicationRecord
   validates :user_id, presence: true
   belongs_to :user
   default_scope -> { order('created_at ASC') }
+
+  has_many :tasks, dependent: :destroy
 end
