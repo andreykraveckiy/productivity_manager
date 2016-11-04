@@ -2,12 +2,15 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = current_user.projects
-    @project = current_user.projects.build
+  end
+
+  def new    
+    @project = Project.new(user: current_user)
   end
 
   def create
     @project = current_user.projects.build(project_params)
-    if @project.save!
+    if @project.save
       flash[:success] = "Project created!"      
     else
       flash[:error] = "Project not created!"

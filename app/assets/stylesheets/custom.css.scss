@@ -21,11 +21,15 @@ h2 {
   margin-top: 1px;
 }
 
+.center {
+  text-align: center;
+}
+
 .projects {
   list-style: none;
   width: 75%;
   text-align: center;
-  margin: 10px 0 0 0;
+  margin: auto;
   li {
     padding: 10px 0;
     border: 1px solid #e8e8e8;

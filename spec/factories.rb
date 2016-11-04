@@ -10,7 +10,7 @@ FactoryGirl.define do
   end
 
   factory :project do
-    name "My first project"
+    sequence (:name) { |n| "Project #{n}" }
     user
   end
 end

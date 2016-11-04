@@ -3,18 +3,12 @@
   <h1>Simple todo lists</h1>
   <h2>from <%= current_user.name %></h2>
   <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-  <div class="center" id="all_projects">
-    <% if current_user.projects.any? %>
+  <div class="center">
+    <% if @projects.any? %>
       <ol class="projects">
-        <% current_user.projects.each do |project| %>
-          <li class="project">
-            <div>
-              <header><%= project.name %> | <%= link_to "delete", project, method: :delete, data: { confirm: "You sure?" }, title: project.name %> </header>
-            </div>
-          </li>
-        <% end %>
+        <%= render @projects %>
       </ol>
-    <% end %>
-    <%= render 'projects/project_form' %>
+    <% end %>   
+    <%= button_to "Add TODO List", new_project_path, method: :get, class: "btn btn-large btn-primary" %> 
   </div>  
 </div>
