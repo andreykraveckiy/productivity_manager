@@ -32,4 +32,23 @@ RSpec.describe Project, type: :model do
     before { @project.name = "a" * 141 }
     it { should be_invalid }
   end
+
+  describe "tasks' assotiations" do
+    before { @project.save }
+    let!(:task0) { FactoryGirl.create(:task, content: "boo", project: @project, priority: 0) }
+    let!(:task1) { FactoryGirl.create(:task, content: "boo", project: @project, priority: 1) }
+
+    it "should have task with smaller priority first" do
+      expect(@project.tasks.to_a).to eq [task0, task1]
+    end
+
+    it "should destroy associated tasks" do
+      tasks = @project.tasks.to_a
+      @project.destroy
+      expect(tasks).not_to be_empty
+      tasks.each do |task|
+        expect(Task.where(id: task.id)).to be_empty
+      end
+    end
+  end
 end

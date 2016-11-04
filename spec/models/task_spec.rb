@@ -21,11 +21,35 @@ RSpec.describe Task, type: :model do
 
   it { should be_valid }
 
-  describe "set priority" do
+  describe "priority and done would be not nil" do
     before { @task.save }
 
     it "should have priority not nil" do
       expect(@task.priority).to eq project.tasks.length
     end
+
+    it "should have done equel false" do
+      expect(@task.done).to eq false
+    end
+  end
+
+  describe "project id must be present" do
+    before { @task.project_id = nil }
+    it { should be_invalid }
+  end
+
+  describe "content should be present" do
+    before { @task.content = "" }
+    it { should be_invalid }
+  end
+
+  describe "content to long" do
+    before { @task.content = "a" * 141 }
+    it { should be_invalid }
+  end
+
+  describe "deadline shouldn't be in the past or now" do
+    before { @task.deadline = DateTime.current }
+    it { should be_invalid }
   end
 end
