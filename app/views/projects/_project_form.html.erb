@@ -1,6 +1,7 @@
 <%= form_for(@project) do |f| %>
   <div class="field">
+    <%= f.label :name %>
     <%= f.text_area :name, placeholder: "Compose new project..." %>
   </div>
-  <%= f.submit "Add TODO List", class: "btn btn-large btn-primary" %>
+  <%= f.submit "Do this", class: "btn btn-large btn-primary" %>
 <% end %>
