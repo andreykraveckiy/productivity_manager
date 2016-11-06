@@ -21,7 +21,7 @@ RSpec.describe Task, type: :model do
 
   it { should be_valid }
 
-  describe "priority and done would be not nil" do
+  describe "priority and done" do
     before do
       t = FactoryGirl.create(:task, project: project, done: true)
       t.save
@@ -39,6 +39,12 @@ RSpec.describe Task, type: :model do
 
     it "should have done equel false" do
       expect(@task.done).to eq false
+    end
+
+    describe "should change done" do
+      before { @task.done! }
+
+      it { expect(@task.done).to eq true }
     end
   end
 

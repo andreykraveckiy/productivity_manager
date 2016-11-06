@@ -7,6 +7,18 @@ class Task < ApplicationRecord
   validate :deadline_cannot_be_in_the_past
   default_scope -> { order('priority ASC') }
 
+  def done!
+    self.done = true
+    save
+    #tasks = self.project.tasks.where("priority > ?", self.priority)
+    #if tasks.any?
+    #  tasks.each do |task|
+    #    task.priotiry = task.priotiry - 1
+    #  end
+    #  tasks.save
+    #end
+  end
+
   private
 
     def deadline_cannot_be_in_the_past
