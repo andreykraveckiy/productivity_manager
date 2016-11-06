@@ -22,10 +22,19 @@ RSpec.describe Task, type: :model do
   it { should be_valid }
 
   describe "priority and done would be not nil" do
-    before { @task.save }
+    before do
+      t = FactoryGirl.create(:task, project: project, done: true)
+      t.save
+      @task.save
+    end
+
+    it "project should have 2 tasks" do
+      expect(@task.project.tasks.length).to eq 2
+    end
 
     it "should have priority not nil" do
-      expect(@task.priority).to eq project.tasks.length
+      # -1, because after saving project's collection change at 1
+      expect(@task.priority).to eq project.tasks.where("done = ?", false).length - 1
     end
 
     it "should have done equel false" do

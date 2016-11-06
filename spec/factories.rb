@@ -16,7 +16,6 @@ FactoryGirl.define do
 
   factory :task do
     content "Some task"
-    priority 0
     project
   end
 end
