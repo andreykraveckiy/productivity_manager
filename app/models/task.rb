@@ -10,13 +10,13 @@ class Task < ApplicationRecord
   def done!
     self.done = true
     save
-    #tasks = self.project.tasks.where("priority > ?", self.priority)
-    #if tasks.any?
-    #  tasks.each do |task|
-    #    task.priotiry = task.priotiry - 1
-    #  end
-    #  tasks.save
-    #end
+    tasks = self.project.tasks.where("priority > ?", self.priority)
+    if tasks.any?
+      tasks.each do |task|
+        task.priority = task.priority - 1
+        task.save
+      end
+    end
   end
 
   private
