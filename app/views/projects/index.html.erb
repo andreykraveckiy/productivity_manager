@@ -1,14 +1,12 @@
 <%provide(:title, "Projects") %>
-<div class="row">
-  <h1>Simple todo lists</h1>
-  <h2>from <%= current_user.name %></h2>
-  <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-  <div class="center">
-    <% if @projects.any? %>
-      <ol class="projects">
-        <%= render @projects %>
-      </ol>
-    <% end %>   
-    <%= button_to "Add TODO List", new_project_path, method: :get, class: "btn btn-large btn-primary" %> 
-  </div>  
-</div>
+<h1>Simple todo lists</h1>
+<h2>from <%= current_user.name %></h2>
+<%= link_to "Log out", destroy_user_session_path, method: :delete %>
+<div class="center">
+  <% if @projects.any? %>
+    <ol class="projects">
+      <%= render @projects %>
+    </ol>
+  <% end %>   
+  <%= link_to content_tag('span', " Add TODO List", class: 'fa fa-plus'), new_project_path, method: :get, class: "btn btn-large btn-primary" %> 
+</div> 

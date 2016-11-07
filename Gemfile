@@ -3,6 +3,7 @@ ruby '2.2.2'
 
 gem 'rails', '~> 5.0', '>= 5.0.0.1'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'font-awesome-sass'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'

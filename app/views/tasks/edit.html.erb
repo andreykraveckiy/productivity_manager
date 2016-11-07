@@ -1,0 +1,16 @@
+<%provide(:title, "Edit task") %>
+<h1>Edit your task</h1>
+<h2>for project '<%= @project.name %>'</h2>
+<div class="center">
+  <%= form_for [@project, @task] do |f| %>
+    <div>
+      <%= f.text_field :content %>
+      <%= f.datetime_select :deadline %>
+
+      <%= f.label :done %>
+      <%= f.check_box :done %>
+    </div>    
+    <%= f.submit "Edit Task", class: "btn btn-large btn-primary" %>
+    <%= link_to "Cancel", root_path, class: "btn btn-large btn-primary" %>
+  <% end %>
+</div>

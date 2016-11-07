@@ -1,8 +1,17 @@
 <%provide(:title, "Edit project") %>
-<div class="row">
-  <h1>Edit your project</h1>
-  <h2>for <%= current_user.name %></h2>
-  <div class="center">
-    <%= render 'projects/project_form' %>
+<h1>Edit your project</h1>
+<h2>for <%= current_user.name %></h2>
+<div class="center">
+  <%= render 'projects/project_form' %>
+  <div class="projects">
+    <h2>Tasks:</h2>
+    <% if @project.tasks.active.any? %>
+        <%= render 'tasks/tasks', project: @project %>
+    <% end %>
+    <hr />
+    <% if @project.tasks.completed.any? %>
+        <%= render 'tasks/completed_tasks', project: @project %>
+    <% end %>
   </div>
 </div>
+

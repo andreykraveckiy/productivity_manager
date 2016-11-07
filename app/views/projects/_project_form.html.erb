@@ -1,7 +1,7 @@
 <%= form_for(@project) do |f| %>
-  <div class="field">
-    <%= f.label :name %>
+  <div class="input">
     <%= f.text_area :name, placeholder: "Compose new project..." %>
   </div>
   <%= f.submit "Do this", class: "btn btn-large btn-primary" %>
+  <%= link_to "Cancel", root_path, class: "btn btn-large btn-primary" %>
 <% end %>

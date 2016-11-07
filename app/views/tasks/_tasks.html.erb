@@ -1,0 +1,22 @@
+<table class="tasks">
+  <% project.tasks.active.each do |task| %>
+  <tr>
+      <td >
+        <%= link_to content_tag('span'," ", class: 'fa fa-square-o'), done_project_task_path(project, task), method: :put %>
+      </td>
+      <td />
+      <td class="col-md-9" style="text-align: left">
+        <%= task.content %> 
+        <% unless task.deadline.nil? %>
+          <%= content_tag('span', "#{task.deadline}") %>
+        <% end %>
+      </td>
+      <td class="col-md-2">
+            <%= link_to content_tag('span',"  ", class: 'fa fa-sort-down'), down_priority_project_task_path(project, task), method: :put, class: 'action' %>
+            <%= link_to content_tag('span',"  ", class: 'fa fa-sort-up'), up_priority_project_task_path(project, task), method: :put, class: 'action' %>
+            <%= link_to content_tag('span',"  ", class: 'fa fa-pencil'), edit_project_task_path(project, task), class: 'action' %>
+            <%= link_to content_tag('span',"  ", class: 'fa fa-trash-o'), [project, task], method: :delete, data: { confirm: "You sure?" }, title: project.name, class: 'action' %>
+      </td>
+  </tr>
+  <% end %>
+</table>
