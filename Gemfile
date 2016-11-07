@@ -8,6 +8,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'faker'
+gem 'carrierwave', '~> 0.11.2'
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do
