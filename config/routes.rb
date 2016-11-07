@@ -5,6 +5,7 @@ ProductivityManager::Application.routes.draw do
       put :done, on: :member
       put :up_priority, on: :member
       put :down_priority, on: :member
+      resources :comments, only: [:new, :create, :destroy]
     end
   end
   devise_for :users,

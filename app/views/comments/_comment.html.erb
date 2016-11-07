@@ -1,0 +1,11 @@
+<tr>
+  <td><%= comment.content %></td>
+  <td>
+    <% unless comment.attachment_url.nil? %>
+      <%= link_to "#{comment.attachment.file.filename}", comment.attachment_url %>
+    <% end %>    
+  </td>
+  <td>
+    <%= link_to content_tag('span',"  ", class: 'fa fa-trash-o'), [comment.task.project, comment.task, comment], method: :delete, data: { confirm: "You sure?" }, class: 'action' %>
+  </td>
+</tr>

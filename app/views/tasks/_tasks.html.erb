@@ -6,7 +6,7 @@
       </td>
       <td />
       <td class="col-md-9" style="text-align: left">
-        <%= task.content %> 
+        <%= link_to "#{task.content}", project_task_path(project, task) %> 
         <% unless task.deadline.nil? %>
           <%= content_tag('span', "#{task.deadline}") %>
         <% end %>

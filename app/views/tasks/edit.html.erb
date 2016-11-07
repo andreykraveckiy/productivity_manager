@@ -13,4 +13,10 @@
     <%= f.submit "Edit Task", class: "btn btn-large btn-primary" %>
     <%= link_to "Cancel", root_path, class: "btn btn-large btn-primary" %>
   <% end %>
+  <div>
+    <%= render 'comments/comment_form', task: @task, comment: @comment %>
+  </div>
+  <div class="comments">
+    <%= render 'comments/comments', task: @task %>
+  </div>
 </div>

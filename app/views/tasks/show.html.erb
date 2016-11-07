@@ -1,0 +1,18 @@
+<%provide(:title, "Show task") %>
+<h1>This is a task</h1>
+<h2>for project '<%= @task.project.name %>'</h2>
+<div class="center">
+  <div class="task_info">
+    <%= @task.content %>
+    <%= @task.deadline %>
+    <%= @task.done %>
+    <%= @task.priority %>
+    <%= link_to "Projects", root_path, class: "btn btn-large btn-primary" %>
+  </div>  
+  <div>
+    <%= render 'comments/comment_form', task: @task, comment: @comment %>
+  </div>
+  <div class="comments">
+    <%= render 'comments/comments', task: @task %>
+  </div>
+</div>

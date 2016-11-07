@@ -1,0 +1,7 @@
+<div class="well">
+  <%= form_for [task.project, task, comment], html: { multipart: true } do |f| %>
+    <%= f.text_field :content %>
+    <%= f.file_field :attachment %>
+    <%= f.submit "Save", class: "btn btn-large btn-primary" %>
+  <% end %>
+</div>

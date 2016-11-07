@@ -1,5 +1,8 @@
 class TasksController < ApplicationController
-  def index
+
+  def show
+    @task = Task.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
@@ -16,6 +19,7 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
     @project = Project.find(params[:project_id])
+    @comment = Comment.new
   end
 
   def update
