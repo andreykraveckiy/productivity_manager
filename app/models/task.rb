@@ -9,6 +9,8 @@ class Task < ApplicationRecord
   scope :active, -> { where(done: false) }
   scope :completed, -> { where(done: true) }
 
+  has_many :comments, dependent: :destroy
+
   def done!
     self.done = true
     save

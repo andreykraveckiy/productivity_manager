@@ -18,4 +18,9 @@ FactoryGirl.define do
     content "Some task"
     project
   end
+
+  factory :comment do
+    content "Comment"
+    task
+  end
 end

@@ -67,4 +67,23 @@ RSpec.describe Task, type: :model do
     before { @task.deadline = DateTime.current }
     it { should be_invalid }
   end
+
+  describe "comments' assotiations" do
+    before { @task.save }
+    let!(:comment0) { FactoryGirl.create(:comment, content: "boo", task: @task, created_at: 1.day.ago) }
+    let!(:comment1) { FactoryGirl.create(:comment, content: "baa", task: @task, created_at: 1.hour.ago) }
+
+    it "should have newer comments first" do
+      expect(@task.comments.to_a).to eq [comment1, comment0]
+    end
+
+    it "should destroy associated comments" do
+      comments = @task.comments.to_a
+      @task.destroy
+      expect(comments).not_to be_empty
+      comments.each do |comment|
+        expect(Comment.where(id: comment.id)).to be_empty
+      end
+    end
+  end
 end
