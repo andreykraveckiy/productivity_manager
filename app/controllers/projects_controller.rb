@@ -27,11 +27,12 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update_attributes(project_params)
-      flash[:success] = "Project was updated"       
+      flash[:success] = "Project was updated" 
+      redirect_to root_url    
     else
       flash[:error] = "Project wasn't updated"
+      render "edit"
     end
-    redirect_to root_url
   end
 
   def destroy

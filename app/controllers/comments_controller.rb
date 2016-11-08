@@ -12,7 +12,10 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:success] = "Comment is added successfully"
     else
-      flash[:error] = "Comment is not added"
+      flash[:error] = "Comment is not added: "
+      @comment.errors.full_messages.each do |msg|
+        flash[:error] << msg
+      end
     end
     redirect_to session.delete(:return_to)
   end

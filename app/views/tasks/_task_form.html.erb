@@ -1,5 +1,6 @@
-<div class="task-form">
-  <%= form_for [project, task] do |f| %>
+<div class="task-form" id="<%= "#{project.id}tf" %>">
+  <%= form_for [project, task], remote: true do |f| %>
+  	<%= render 'shared/error_messages', object: task %>
     <span class="col-md-1">
       <%= link_to_if false, content_tag('span', " ", class: 'fa fa-plus'), '#' %>
     </span>

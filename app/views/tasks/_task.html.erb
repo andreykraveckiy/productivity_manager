@@ -1,14 +1,14 @@
 <tr>
   <td >
-    <%= link_to content_tag('span'," ", class: 'fa fa-square-o'), done_project_task_path(project, task), method: :put %>
+    <%= link_to content_tag('span'," ", class: 'fa fa-square-o'), done_project_task_path(project, task), method: :put, remote: true %>
   </td>
   <td />
   <td class="col-md-9" style="text-align: left">
     <%= link_to "#{task.content}", project_task_path(project, task) %> 
   </td>
   <td class="col-md-2">
-    <%= link_to content_tag('span',"  ", class: 'fa fa-sort-down'), down_priority_project_task_path(project, task), method: :put, class: 'action' %>
-    <%= link_to content_tag('span',"  ", class: 'fa fa-sort-up'), up_priority_project_task_path(project, task), method: :put, class: 'action' %>
+    <%= link_to content_tag('span',"  ", class: 'fa fa-sort-down'), down_priority_project_task_path(project, task), method: :put, class: 'action', remote: true %>
+    <%= link_to content_tag('span',"  ", class: 'fa fa-sort-up'), up_priority_project_task_path(project, task), method: :put, class: 'action', remote: true %>
     <%= link_to content_tag('span',"  ", class: 'fa fa-pencil'), edit_project_task_path(project, task), class: 'action' %>
     <%= link_to content_tag('span',"  ", class: 'fa fa-trash-o'), [project, task], method: :delete, data: { confirm: "You sure?" }, title: project.name, class: 'action' %>
   </td>

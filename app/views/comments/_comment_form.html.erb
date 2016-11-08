@@ -1,7 +1,8 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" id="create_comment">
 	<div class="panel-heading">Write your comment!</div>
 	<div class="panel-body">
-  <%= form_for [task.project, task, comment], html: { multipart: true } do |f| %>
+  <%= form_for([task.project, task, comment], html: { multipart: true }) do |f| %>
+  	<%= render 'shared/error_messages', object: comment %>
     <%= f.text_area :content %>
     <%= f.file_field :attachment%>
     <%= f.submit "Save comment", class: "btn btn-large btn-primary" %>

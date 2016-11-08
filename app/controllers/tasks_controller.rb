@@ -10,14 +10,20 @@ class TasksController < ApplicationController
   end
 
   def create
-    project = Project.find(params[:project_id])
-    @task = project.tasks.build(task_params)
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.build(task_params)
     if @task.save
       flash[:success] = "Task is added successfully"
     else
-      flash[:error] = "Task not created!"
+      flash[:error] = "Task not created: "
+      @task.errors.full_messages.each do |msg|
+        flash[:error] << msg
+      end
     end
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
+    end
   end
 
   def edit
@@ -34,7 +40,10 @@ class TasksController < ApplicationController
       flash[:success] = "Task was updated" 
       redirect_to root_url      
     else
-      flash[:error] = "Task wasn't updated"
+      flash[:error] = "Task wasn't updated: "
+      @task.errors.full_messages.each do |msg|
+        flash[:error] << msg
+      end
       render "edit"
     end
   end
@@ -53,21 +62,30 @@ class TasksController < ApplicationController
     @task.done!
     flash[:success] = "Task '#{@task.content}' is updated"
     #edirect_to root_url
-    redirect_to session.delete(:return_to)
+    respond_to do |format|
+      format.html { redirect_to session.delete(:return_to) }
+      format.js
+    end
   end
 
   def up_priority
     session[:return_to] ||= request.referer
     @task = Task.find(params[:id])
     @task.up_priority!
-    redirect_to session.delete(:return_to)
+    respond_to do |format|
+      format.html { redirect_to session.delete(:return_to) }
+      format.js
+    end
   end
 
   def down_priority
     session[:return_to] ||= request.referer
     @task = Task.find(params[:id])
     @task.down_priority!
-    redirect_to session.delete(:return_to)
+    respond_to do |format|
+      format.html { redirect_to session.delete(:return_to) }
+      format.js
+    end
   end
 
   private

@@ -1,0 +1,2 @@
+$('#<%= @task.project.id %>t').html("<%= escape_javascript(render('tasks/tasks', project: @task.project)) %>");
+$('#<%= @task.project.id %>c_t').html("<%= escape_javascript(render('tasks/completed_tasks', project: @task.project)) %>");

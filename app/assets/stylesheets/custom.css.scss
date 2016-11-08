@@ -52,3 +52,11 @@ textarea {
 .col-md-9 {
   text-align: left;
 }
+
+.error-explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}

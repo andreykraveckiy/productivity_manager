@@ -24,9 +24,9 @@ class Task < ApplicationRecord
   end
 
   def up_priority!
-    if self.priority > 0
       tasks_ar = self.project.tasks.active.to_a
       index = tasks_ar.index(self) - 1
+    if index >= 0
       another_task = tasks_ar[index]
       priority = another_task.priority
       another_task.update_attribute(:priority, self.priority)
@@ -34,10 +34,10 @@ class Task < ApplicationRecord
     end
   end
 
-  def down_priority!
-    if self.priority < (self.project.tasks.active.length - 1)
+  def down_priority!    
       tasks_ar = self.project.tasks.active.to_a
       index = tasks_ar.index(self) + 1
+    if index < self.project.tasks.active.length
       another_task = tasks_ar[index]
       priority = another_task.priority
       another_task.update_attribute(:priority, self.priority)
