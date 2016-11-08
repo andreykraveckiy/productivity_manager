@@ -7,9 +7,13 @@ class CommentsController < ApplicationController
 
   def create    
     session[:return_to] ||= request.referer
-    task = Task.find(params[:task_id])
-    task.comments.create!(comment_params)
-    flash[:success] = "Comment is added successfully"
+    @task = Task.find(params[:task_id])
+    @comment = @task.comments.build(comment_params)
+    if @comment.save
+      flash[:success] = "Comment is added successfully"
+    else
+      flash[:error] = "Comment is not added"
+    end
     redirect_to session.delete(:return_to)
   end
 

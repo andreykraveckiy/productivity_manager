@@ -11,8 +11,12 @@ class TasksController < ApplicationController
 
   def create
     project = Project.find(params[:project_id])
-    project.tasks.create!(task_params)
-    flash[:success] = "Task is added successfully"
+    @task = project.tasks.build(task_params)
+    if @task.save
+      flash[:success] = "Task is added successfully"
+    else
+      flash[:error] = "Task not created!"
+    end
     redirect_to root_url
   end
 
@@ -24,12 +28,15 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
+    @project = Project.find(params[:project_id])
+    @comment = Comment.new
     if @task.update_attributes(task_params)
-      flash[:success] = "Task was updated"       
+      flash[:success] = "Task was updated" 
+      redirect_to root_url      
     else
       flash[:error] = "Task wasn't updated"
+      render "edit"
     end
-    redirect_to root_url
   end
 
   def destroy

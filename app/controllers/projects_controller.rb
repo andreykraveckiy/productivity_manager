@@ -12,11 +12,12 @@ class ProjectsController < ApplicationController
   def create
     @project = current_user.projects.build(project_params)
     if @project.save
-      flash[:success] = "Project created!"      
+      flash[:success] = "Project created!"
+      redirect_to root_url      
     else
       flash[:error] = "Project not created!"
+      render "new"
     end
-    redirect_to root_url
   end
 
   def edit
