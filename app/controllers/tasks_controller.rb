@@ -19,7 +19,7 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
     @project = Project.find(params[:project_id])
-    @comment = Comment.new
+    @comment = Comment.new  
   end
 
   def update

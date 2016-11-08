@@ -1,16 +1,20 @@
-<% if task.comments.any? %>
-  <table class="table table-bordered table-striped">
-    <thread>
-      <tr>
-        <th>Comment</th>
-        <th>Download link</th>
-        <th>&nbsp;</th>
-      </tr>
-    </thread>
-    <tbody>
-      <% task.comments.each do |comment| %>
-        <%= render 'comments/comment', comment: comment %>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+<div class="panel panel-info">
+  <% if task.comments.any? %>
+    <div class="panel-heading">
+      <strong>Comments(<%= task.comments.length %>)</strong>
+    </div>
+    <div class="panel-body">
+      <table class="table table-bordered">      
+        <tbody>
+          <% task.comments.each do |comment| %>
+            <%= render 'comments/comment', comment: comment %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="panel-heading">
+      <strong>You haven't done any comment for this task.</strong>
+    <div>
+  <% end %>
+</div>

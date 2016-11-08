@@ -10,7 +10,7 @@
       <div class="control-group">
       <%= f.label :deadline, class: "control-label" %>
         <div class="controls">
-          <%= f.datetime_select :deadline %>
+          <%= f.datetime_select :deadline, {:include_blank => true, :default => nil} %>
         </div>
       </div>
       <div class="control-group">
@@ -21,12 +21,12 @@
       </div>    
       <%= f.submit "Edit Task", class: "btn btn-large btn-primary" %>
       <%= link_to "Cancel", root_path, class: "btn btn-large btn-primary" %>
-    <% end %>
+    <% end %>  
+  </div>
     <div>
       <%= render 'comments/comment_form', task: @task, comment: @comment %>
     </div>
     <div class="comments">
       <%= render 'comments/comments', task: @task %>
     </div>
-  </div>
 </div>

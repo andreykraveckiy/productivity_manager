@@ -31,7 +31,7 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   text-align: center;
-  color: #fff;
+  color: #ddd;
 }
 
 textarea {
@@ -47,4 +47,8 @@ textarea {
   height: auto !important;
   background-color: #337ab7;
   margin-bottom: 20px;
+}
+
+.col-md-9 {
+  text-align: left;
 }

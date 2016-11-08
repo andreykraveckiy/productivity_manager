@@ -4,7 +4,13 @@
 <div class="center">
   <div class="project form-horizontal">
     <div class="title">
-      <strong><%= @task.content %></strong>
+      <span class="col-md-10">
+        <strong><%= @task.content %></strong>
+      </span>
+      <span class="col-md-2">
+        <%= link_to content_tag('span',"  ", class: 'fa fa-pencil'), edit_project_task_path(@task.project, @task), class: 'action' %>
+        <%= link_to content_tag('span',"  ", class: 'fa fa-trash-o'), [@task.project, @task], method: :delete, data: { confirm: "You sure?" }, class: 'action' %>
+      </span>
     </div>
     <div class="control-group">
       <label class="control-label">Deadline:</label>
@@ -21,14 +27,8 @@
       <div class="controls">
         <%= link_to_if false, content_tag('span'," ", class: 'fa fa-square-o'), '#' %>
       </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label">Priority:</label>
-      <div class="controls">
-        <%= @task.priority %>
-      </div>
-    </div>
-    <%= link_to "Projects", root_path, class: "btn btn-large btn-primary" %>
+    </div>    
+    <%= link_to "Back to projects", root_path, class: "btn btn-large btn-primary" %>
   </div>  
   <div>
     <%= render 'comments/comment_form', task: @task, comment: @comment %>
