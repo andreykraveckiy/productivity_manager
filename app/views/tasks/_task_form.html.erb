@@ -1,8 +1,9 @@
-
+<div class="task-form">
   <%= form_for [project, task] do |f| %>
     <span class="col-md-1">
-      <%= link_to content_tag('span', " ", class: 'fa fa-plus'), '#' %>
+      <%= link_to_if false, content_tag('span', " ", class: 'fa fa-plus'), '#' %>
     </span>
     <%= f.text_field :content, class: "col-md-9" %>
     <%= f.submit "Add Task", class: "btn btn-sm btn-success col-md-2" %>
   <% end %>
+</div>

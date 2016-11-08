@@ -27,46 +27,24 @@ h2 {
   text-align: center;
 }
 
-.projects {
-  list-style: none;
-  width: 75%;
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
   text-align: center;
-  padding-bottom: 20px;
-  margin: auto;
-  li {
-    padding: 10px 0;
-    border: 1px solid #e8e8e8;
-    border-radius: 0 0 10px 10px;
-    margin-bottom: 50px;
-    .title {  
-      background-color: #337ab7;  
-      .act{
-        opacity: 0;
-      }
-      &:hover .act {
-        opacity: 1;
-        transition: opacity 0.5s ease;
-      }
-    }
-  }
+  color: #fff;
 }
 
-.tasks {
-  width: 100%;
-  margin: auto;
-  margin-left: 0px;
-  margin-top: 30px;
-  .action{
-      opacity: 0;
-    }
-  tr {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-    td {
-      padding: 10px 0;
-    }
-    &:hover .action{
-      opacity: 1;
-    }
-  }
+textarea {
+  border: 1px solid #bbb;
+  width: 65%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 30px;
+  text-align: center;
+}
+
+.input {
+  height: auto !important;
+  background-color: #337ab7;
+  margin-bottom: 20px;
 }

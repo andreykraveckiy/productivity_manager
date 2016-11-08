@@ -4,9 +4,9 @@
 <%= link_to "Log out", destroy_user_session_path, method: :delete %>
 <div class="center">
   <% if @projects.any? %>
-    <ol class="projects">
+    <div class="projects">
       <%= render @projects %>
-    </ol>
+    </div>
   <% end %>   
   <%= link_to content_tag('span', " Add TODO List", class: 'fa fa-plus'), new_project_path, method: :get, class: "btn btn-large btn-primary" %> 
 </div> 

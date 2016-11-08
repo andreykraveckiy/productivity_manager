@@ -12,34 +12,36 @@ class Task < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   def done!
-    self.done = true
-    save
-    tasks = self.project.tasks.where("priority > ? and done = ?", self.priority, false)
-    if tasks.any?
-      tasks.each do |task|
-        task.priority = task.priority - 1
-        task.save!
-      end
-    end
+    update_attribute(:done, true)
+    #save
+    #tasks = self.project.tasks.where("priority > ? and done = ?", self.priority, false)
+    #if tasks.any?
+    #  tasks.each do |task|
+    #    task.priority = task.priority - 1
+    #    task.save!
+    #  end
+    #end
   end
 
   def up_priority!
     if self.priority > 0
-      task = self.project.tasks.where("priority = ? and done = ?", self.priority - 1, false)
-      task[0].priority = task[0].priority + 1
-      self.priority = self.priority - 1
-      task[0].save!
-      self.save!
+      tasks_ar = self.project.tasks.active.to_a
+      index = tasks_ar.index(self) - 1
+      another_task = tasks_ar[index]
+      priority = another_task.priority
+      another_task.update_attribute(:priority, self.priority)
+      update_attribute(:priority, priority)
     end
   end
 
   def down_priority!
     if self.priority < (self.project.tasks.active.length - 1)
-      task = self.project.tasks.where("priority = ? and done = ?", self.priority + 1, false)
-      task[0].priority = task[0].priority - 1
-      self.priority = self.priority + 1
-      task[0].save!
-      self.save!
+      tasks_ar = self.project.tasks.active.to_a
+      index = tasks_ar.index(self) + 1
+      another_task = tasks_ar[index]
+      priority = another_task.priority
+      another_task.update_attribute(:priority, self.priority)
+      update_attribute(:priority, priority)
     end
   end
 
@@ -53,6 +55,6 @@ class Task < ApplicationRecord
 
     def set_priority
       # pririty of tasks, which are done, not important for plans. They are done!
-      self.priority = self.project.tasks.active.length if self.priority.nil?
+      self.priority = self.project.tasks.length if self.priority.nil?
     end
 end

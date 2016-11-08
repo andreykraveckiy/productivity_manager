@@ -1,13 +1,17 @@
-<table class="tasks">
-  <% project.tasks.completed.each do |task| %>
-    <tr>
-      <td >
-        <%= link_to content_tag('span'," ", class: 'fa fa fa-check-square-o'), '#' %>
-      </td>
-      <td />
-      <td class="col-md-9" style="text-align: left; text-decoration: line-through;">
-        <%= task.content %>  
-      </td>      
-    </tr>
+<div>
+  <% if project.tasks.completed.any? %>
+    <table class="tasks">
+      <% project.tasks.completed.each do |task| %>
+        <tr>
+          <td >
+            <%= link_to_if false, content_tag('span'," ", class: 'fa fa-check-square-o'), '#' %>
+          </td>
+          <td />
+          <td class="col-md-9" style="text-align: left; text-decoration: line-through;">
+            <%= task.content %>  
+          </td>      
+        </tr>
+      <% end %>
+    </table>
   <% end %>
-</table>
+</div>

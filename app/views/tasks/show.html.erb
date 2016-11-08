@@ -2,11 +2,32 @@
 <h1>This is a task</h1>
 <h2>for project '<%= @task.project.name %>'</h2>
 <div class="center">
-  <div class="task_info">
-    <%= @task.content %>
-    <%= @task.deadline %>
-    <%= @task.done %>
-    <%= @task.priority %>
+  <div class="project form-horizontal">
+    <div class="title">
+      <strong><%= @task.content %></strong>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Deadline:</label>
+      <div class="controls">
+        <% if @task.deadline.nil? %>
+          none
+        <% else %>
+          <%= @task.deadline %>
+        <% end %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Is done:</label>
+      <div class="controls">
+        <%= link_to_if false, content_tag('span'," ", class: 'fa fa-square-o'), '#' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Priority:</label>
+      <div class="controls">
+        <%= @task.priority %>
+      </div>
+    </div>
     <%= link_to "Projects", root_path, class: "btn btn-large btn-primary" %>
   </div>  
   <div>

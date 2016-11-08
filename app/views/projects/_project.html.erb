@@ -1,20 +1,17 @@
-<li>
+<div class="project">
   <div class="title">  
     <span class="col-md-1">   
-      <%= link_to content_tag('span'," ", class: 'fa fa-sticky-note-o'), '#' %>
+      <%= link_to_if false, content_tag('span'," ", class: 'fa fa-sticky-note'), '#' %>
     </span>  
     <span class="col-md-9">
-      <%= project.name %>  
+      <strong><%= project.name %></strong>  
     </span >
     <span class="col-md-2">
       <%= link_to content_tag('span'," ", class: 'fa fa-pencil'), edit_project_path(project), class: 'act' %>
-      <%= link_to content_tag('span'," ", class: 'fa fa-trash'), project, method: :delete, data: { confirm: "You sure?" }, title: project.name, class: 'act' %>     
+      <%= link_to content_tag('span'," ", class: 'fa fa-trash-o'), project, method: :delete, data: { confirm: "You sure?" }, title: project.name, class: 'act' %>     
     </span>
   </div>
-  <div>
-    <%= render 'tasks/task_form', project: project, task: @task%>
-  </div>
-    <% if project.tasks.any? %>
-      <%= render 'tasks/tasks', project: project %>
-    <% end %>
-</li>
+  <%= render 'tasks/task_form', project: project, task: @task%>
+  <%= render 'tasks/tasks', project: project %>
+  <div class="clearfix"></div>
+</div>

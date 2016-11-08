@@ -1,3 +1,42 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.projects {
+  list-style: none;
+  width: 75%;
+  text-align: center;
+  padding-bottom: 20px;
+  margin: auto; 
+}
+
+.project {
+  border: 1px solid #e8e8e8;
+  border-radius: 0 0 10px 10px;
+  padding-bottom: 15px;
+  margin-bottom: 50px;
+  .title {  
+    background-color: #337ab7; 
+    height: 40px;
+    vertical-align: middle;
+    padding-top: 10px;
+    .fa {
+      color: #ddd;
+    }
+    .act{
+      opacity: 0;
+    }    
+    &:hover .act {
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+  }
+  h2 {
+    margin-top: 10px; 
+  }
+}
+
+strong {
+  color: white;
+}
+
