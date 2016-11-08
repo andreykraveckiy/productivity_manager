@@ -1,6 +1,13 @@
 <%provide(:title, "Projects") %>
 <h1>Simple todo lists</h1>
-<h2>from <%= current_user.name %></h2>
+<h2>
+  from 
+  <% if current_user.name.nil? %>
+    <%= current_user.email %>
+  <% else %>
+    <%= current_user.name %>
+  <% end %>
+</h2>
 <%= link_to "Log out", destroy_user_session_path, method: :delete %>
 <div class="center">
   <% if @projects.any? %>
