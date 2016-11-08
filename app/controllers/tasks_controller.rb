@@ -53,7 +53,10 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
     #redirect_to root_url
-    redirect_to session.delete(:return_to)
+    respond_to do |format|
+      format.html { redirect_to session.delete(:return_to) }
+      format.js
+    end
   end
 
   def done

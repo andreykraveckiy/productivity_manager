@@ -10,6 +10,6 @@
     <%= link_to content_tag('span',"  ", class: 'fa fa-sort-down'), down_priority_project_task_path(project, task), method: :put, class: 'action', remote: true %>
     <%= link_to content_tag('span',"  ", class: 'fa fa-sort-up'), up_priority_project_task_path(project, task), method: :put, class: 'action', remote: true %>
     <%= link_to content_tag('span',"  ", class: 'fa fa-pencil'), edit_project_task_path(project, task), class: 'action' %>
-    <%= link_to content_tag('span',"  ", class: 'fa fa-trash-o'), [project, task], method: :delete, data: { confirm: "You sure?" }, title: project.name, class: 'action' %>
+    <%= link_to content_tag('span',"  ", class: 'fa fa-trash-o'), [project, task], method: :delete, data: { confirm: "You sure?" }, title: project.name, class: 'action', remote: true %>
   </td>
 </tr>
