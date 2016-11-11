@@ -1,7 +1,7 @@
 ProductivityManager::Application.routes.draw do
   root 'projects#index'
   resources :projects, only: [:index, :new, :create, :edit, :update, :destroy] do
-    resources :tasks do
+    resources :tasks, only: [:show, :new, :create, :edit, :update, :destroy] do
       put :done, on: :member
       put :up_priority, on: :member
       put :down_priority, on: :member

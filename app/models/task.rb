@@ -55,6 +55,9 @@ class Task < ApplicationRecord
 
     def set_priority
       # pririty of tasks, which are done, not important for plans. They are done!
-      self.priority = self.project.tasks.length if self.priority.nil?
+      if self.priority.nil?
+        tasks_ar = self.project.tasks.active.to_a
+        self.priority = tasks_ar.last.priority + 1 
+      end
     end
 end
