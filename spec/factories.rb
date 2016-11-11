@@ -15,7 +15,7 @@ FactoryGirl.define do
   end
 
   factory :task do
-    content "Some task"
+    sequence (:content) { |n| "Task #{n}" }
     project
   end
 

@@ -23,7 +23,7 @@ RSpec.describe "projects/new", type: :view do
   end
 
   describe "save some project" do    
-    before { fill_in "with: "New project" }
+    before { fill_in with: "New project" }
 
     it "should change Project count" do
       expect do
