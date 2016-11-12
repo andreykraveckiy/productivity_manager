@@ -19,7 +19,8 @@ RSpec.describe "projects/new", type: :view do
 
     it { should have_title('Create project') }
     it { should have_selector("input") }
-    it { should have_selector(:link_or_button) }
+    it { should have_button("Do this") }
+    it { should have_link("Cancel") }
 
     describe "save when input are empty" do
       it "should not change Project count" do
