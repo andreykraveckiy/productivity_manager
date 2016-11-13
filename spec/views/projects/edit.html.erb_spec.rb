@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'database_cleaner'
 
 RSpec.describe "projects/edit", type: :view do
   include Capybara::DSL   
@@ -37,7 +38,7 @@ RSpec.describe "projects/edit", type: :view do
       end
 
       it { should have_title('Edit project') }
-      it { should have_selector(".error-explanation")}
+      it { should have_selector(".error-explanation") }
     end
 
     describe "save some project" do    

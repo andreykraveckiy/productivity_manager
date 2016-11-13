@@ -1,10 +1,10 @@
 require 'rails_helper'
+require 'database_cleaner'
 
 COMMENT_CONTENT = "New comment"
-TASK_CONTENT = "new version of task"
 FILE_PATH = 'spec/support/KravetskyiCV.pdf'
 
-RSpec.describe "tasks/edit.html.erb", type: :view do
+RSpec.describe "tasks/show.html.erb", type: :view do
   include Capybara::DSL   
   
   DatabaseCleaner.strategy = :truncation
@@ -19,55 +19,30 @@ RSpec.describe "tasks/edit.html.erb", type: :view do
   end
 
   describe "unauthincated user" do
-    before { visit edit_project_task_path(@task.project, @task) }
+    before { visit project_task_path(@task.project, @task) }
     it { should have_content("Log in") }
   end
 
   describe "authenticate user" do
     before do
       login_as(@user, :scope => :user)
-      visit edit_project_task_path(@task.project, @task)
+      visit project_task_path(@task.project, @task)
     end
 
-    it { should have_title('Edit task') }
+    it { should have_title('Show task') }
     it { should have_content(@task.content) }
-    it { should have_content('Deadline') }
-    it { should have_button("Edit Task") }
-    it { should have_link("Cancel") }
-
-    describe "work with edit" do
-
-      describe "save when input are empty" do
-        before do
-          within(".project") do
-            fill_in with: " "
-            click_button "Edit Task"
-          end
-        end
-
-        it { should have_title('Edit task') }
-        it { should have_selector(".error-explanation") }
-      end
-
-      describe "update task" do    
-        before do 
-          within(".project") do
-            fill_in with: TASK_CONTENT
-            click_button "Edit Task"
-          end
-        end
-
-        it { should have_title("Projects") }
-        it { should have_content(TASK_CONTENT) }
-      end
-
-      describe "cancel page" do
-        before { click_link "Cancel" }
-
-        it { should have_title("Projects") }
-      end
-    end
+    it { should have_content('Deadline:') }
+    it { should have_content('Is done:') }
+    it { should have_selector('.fa-square-o') }
+    it { should have_link(class: "fa-pencil", href: edit_project_task_path(@task.project, @task)) }
+    it { should have_link(class: "fa-trash-o", href: project_task_path(@task.project, @task)) }
   
+    describe "back to projects page" do
+        before { click_link "Back to projects" }
+
+        it { should have_title("Projects") }
+    end
+
     describe "comments" do
       it { should have_content('Write your comment') }
       it { should have_selector("textarea", id: "comment_content") }
@@ -82,16 +57,14 @@ RSpec.describe "tasks/edit.html.erb", type: :view do
               click_button "Save comment" 
             end
 
-            it { should have_title('Edit task') }
+            it { should have_title('Show task') }
             it { should have_content("Comment is not added") }
           end
 
           describe "create a comment without attachment" do
             before do
-              within("#create_comment") do
-                fill_in with: COMMENT_CONTENT
-                click_button "Save comment"
-              end
+              fill_in with: COMMENT_CONTENT
+              click_button "Save comment"
             end
 
             it { should have_content(COMMENT_CONTENT) }
@@ -110,11 +83,9 @@ RSpec.describe "tasks/edit.html.erb", type: :view do
 
           describe "create a comment with attachment" do
             before do
-              within("#create_comment") do
-                fill_in with: COMMENT_CONTENT
-                attach_file "comment_attachment", FILE_PATH
-                click_button "Save comment"
-              end
+              fill_in with: COMMENT_CONTENT
+              attach_file "comment_attachment", FILE_PATH
+              click_button "Save comment"
             end
 
             it { should have_content(COMMENT_CONTENT) }

@@ -6,6 +6,6 @@
     <% end %>    
   </td>
   <td class="col-md-1">
-    <%= link_to content_tag('span',"  ", class: 'fa fa-trash-o'), [comment.task.project, comment.task, comment], method: :delete, data: { confirm: "You sure?" }, class: 'action' %>
+    <%= link_to "  ", [comment.task.project, comment.task, comment], method: :delete, data: { confirm: "You sure?" }, class: 'action fa fa-trash-o' %>
   </td>
 </tr>

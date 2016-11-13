@@ -4,21 +4,15 @@
 <div class="center">
   <div class="project form-horizontal">
     <%= form_for [@project, @task] do |f| %>
-        <div class="input">
-          <%= f.text_area :content %>
-        </div>
+      <%= render 'shared/error_messages', object: @task %>
+      <%= f.text_area :content %>
       <div class="control-group">
       <%= f.label :deadline, class: "control-label" %>
         <div class="controls">
           <%= f.datetime_select :deadline, {:include_blank => true, :default => nil} %>
         </div>
       </div>
-      <div class="control-group">
-        <%= f.label :done, class: "control-label" %>
-        <div class="controls">
-          <%= f.check_box :done %>
-        </div>
-      </div>    
+         
       <%= f.submit "Edit Task", class: "btn btn-large btn-primary" %>
       <%= link_to "Cancel", root_path, class: "btn btn-large btn-primary" %>
     <% end %>  

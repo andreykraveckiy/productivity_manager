@@ -4,7 +4,7 @@
       <strong>Comments(<%= task.comments.length %>)</strong>
     </div>
     <div class="panel-body">
-      <table class="table table-bordered">      
+      <table class="table table-bordered" id="comments">      
         <tbody>
           <% task.comments.each do |comment| %>
             <%= render 'comments/comment', comment: comment %>

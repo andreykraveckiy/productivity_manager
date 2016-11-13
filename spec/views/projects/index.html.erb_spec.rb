@@ -1,9 +1,11 @@
 require 'rails_helper'
 require 'database_cleaner'
 
+TASK_CONTENT = "abracadabra"
+
 RSpec.describe "projects/index", type: :view do
   include Capybara::DSL   
-  
+
   DatabaseCleaner.strategy = :truncation
   DatabaseCleaner.clean
   subject { page }
@@ -62,7 +64,7 @@ RSpec.describe "projects/index", type: :view do
         describe "with information" do
           before do
             within("##{@user.projects.first.id}tf") do
-              fill_in with: "abracadabra" 
+              fill_in with: TASK_CONTENT 
             end
           end
 
@@ -74,7 +76,7 @@ RSpec.describe "projects/index", type: :view do
 
           describe "should show this task" do
             before { first(:button, "Add Task").click }
-            it { should have_content("abracadabra") }
+            it { should have_content(TASK_CONTENT) }
           end
         end
       end
