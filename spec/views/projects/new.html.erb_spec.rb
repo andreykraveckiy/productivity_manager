@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "projects/new", type: :view do
-  include Capybara::DSL  
+  include Capybara::DSL   
+  
+  DatabaseCleaner.strategy = :truncation
+  DatabaseCleaner.clean  
 
   subject { page } 
 

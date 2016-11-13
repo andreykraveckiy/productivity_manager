@@ -1,8 +1,11 @@
 require 'rails_helper'
+require 'database_cleaner'
 
 RSpec.describe "projects/index", type: :view do
   include Capybara::DSL   
-
+  
+  DatabaseCleaner.strategy = :truncation
+  DatabaseCleaner.clean
   subject { page }
 
   describe "unauthincated user" do
@@ -89,7 +92,7 @@ RSpec.describe "projects/index", type: :view do
         it "should have links for each task" do
           @user.projects.each do |project|
             project.tasks.each do |task|
-              expect(page).to have_content(task.content)
+              expect(page).to have_link(task.content, project_task_path(project, task))
               expect(page).to have_link(class: "fa-pencil", href: edit_project_task_path(project, task))
               expect(page).to have_link(class: "fa-trash-o", href: project_task_path(project,task))
               expect(page).to have_link(class: "fa-sort-up", href: up_priority_project_task_path(project,task))
